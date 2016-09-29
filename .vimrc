@@ -104,13 +104,15 @@ set wildmenu
 " =>Copy and Paste
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Paste from clipboard using ,p in normal mode
-nnoremap <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+nnoremap <Leader>p :set paste<CR>"+]p:set nopaste<CR>
 
 " In insert mode, paste from clipboard using CTRL+v
-inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<ENTER>i<RIGHT>
+inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<CR>i<RIGHT>
 
 " copy to clipboard using ctrl-c in visual mode
-vnoremap <C-c> "*y
+vnoremap <C-c> "+y
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
