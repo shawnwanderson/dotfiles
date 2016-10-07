@@ -9,6 +9,8 @@ Plugin 'VundleVim/Vundle.vim'
 "Color Scheme
 Plugin 'flazz/vim-colorschemes'
 
+"Comment manager
+Plugin 'scrooloose/nerdcommenter'
 "File Management"
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -18,7 +20,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/Pydiction'
 
 " Universal Syntax Checker + Completion
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 
 "Utilities"
 Plugin 'L9'
@@ -64,20 +66,36 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
 "syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
+"Slimux
+map <Leader>s  :SlimuxREPLSendLine<CR>
+vmap <Leader>s :SlimuxREPLSendSelection<CR>
+
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+"
+" " Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+"
+" " Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " => General
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " show line numbers
 set number
+set numberwidth=1             " using only 1 column (and 1 space) while possible
 
 " With a map leader it's possible to do extra key combinations
 " " leader is press comma (,) key
@@ -87,6 +105,8 @@ let g:mapleader=","
 
 " Fast saving with leader + w
 nmap <leader>w :w!<cr>
+" Fast quitting with leader + q
+nmap <leader>q :q<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -98,21 +118,15 @@ nnoremap <leader>rv :source $MYVIMRC<CR>
 
 " Tab completion in command mode
 set wildmenu
+
+set cursorline
  
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>Copy and Paste
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Paste from clipboard using ,p in normal mode
-nnoremap <Leader>p :set paste<CR>"+]p:set nopaste<CR>
-
-" In insert mode, paste from clipboard using CTRL+v
-inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<CR>i<RIGHT>
-
-" copy to clipboard using ctrl-c in visual mode
+vnoremap <C-c> "*y
 vnoremap <C-c> "+y
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -124,9 +138,22 @@ colorscheme Monokai
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Navigation 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" page down with <SPACE>, pageup with - or <BkSpc>
-noremap <Space> <PageDown>
-noremap <BS> <PageUp>
+
+noremap <Space> i<Space><RIGHT><ESC>
+noremap <BS> i<BS><RIGHT><ESC>
+map <leader>j $
+map <leader>f 0
+
+" Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"split more naturally
+set splitbelow
+set splitright
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -146,3 +173,11 @@ set si "Smart indetnokai
 
 set nowrap          " no line wrapping;
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Search options
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"--- search options ------------
+set incsearch       " show 'best match so far' as you type
+set hlsearch        " hilight the items found by the search
+set ignorecase      " ignores case of letters on searches
+set smartcase       " Override the 'ignorecase' option if the search pattern contains upper case characters
