@@ -7,7 +7,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 "Color Scheme
-Plugin 'flazz/vim-colorschemes'
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
 
 "Comment manager
 Plugin 'scrooloose/nerdcommenter'
@@ -93,6 +94,15 @@ let g:NERDDefaultAlign = 'left'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " => General
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" zsh shell and powerline
+set shell=/bin/zsh
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+" Always show statusline
+set laststatus=2
+"
+
 " show line numbers
 set number
 set numberwidth=1             " using only 1 column (and 1 space) while possible
@@ -120,20 +130,22 @@ nnoremap <leader>rv :source $MYVIMRC<CR>
 set wildmenu
 
 set cursorline
- 
+set mouse=a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>Copy and Paste
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <C-c> "*y
 vnoremap <C-c> "+y
+nnoremap <C-v> "+p
+inoremap <C-v> <C-r>+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax enable
 set background=dark
-colorscheme Monokai
-
+colorscheme solarized
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Navigation 
