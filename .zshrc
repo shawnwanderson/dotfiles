@@ -8,7 +8,10 @@ source ~/antigen.zsh
  antigen bundle pip
  antigen bundle lein
  antigen bundle command-not-found
+ antigen bundle extract
  antigen bundle Lokaltog/powerline powerline/bindings/zsh
+ antigen bundle zsh-users/zsh-autosuggestions
+ antigen bundle wting/autojump
 #
 # # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -18,6 +21,18 @@ antigen theme cobalt2
 #
 # # Tell antigen that you're done.
 antigen apply
+
+export EDITOR="vim"
+#bindkey -v 
+
+# vi style incremental search
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward  
+
+#bind ctrl-space to accept suggestion
+bindkey '^ ' autosuggest-accept
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,3 +100,18 @@ antigen apply
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH"
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
+#allow simple wildcard (in exchange for more powerful globbing)
+setopt nonomatch
+xcape -e 'Control_L=Escape' 
+
+#check if in virtualenv before using pip
+export PIP_REQUIRE_VIRTUALENV=true
+gpip() {
+       PIP_REQUIRE_VIRTUALENV="" pip "$@"
+   }
+

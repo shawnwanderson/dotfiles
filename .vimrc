@@ -18,7 +18,12 @@ Plugin 'scrooloose/nerdtree'
 
 "Python Syntax checker
 Plugin 'nvie/vim-flake8'
-Plugin 'vim-scripts/Pydiction'
+Plugin 'ervandew/supertab'
+Plugin 'davidhalter/jedi-vim'
+
+"Python snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " Universal Syntax Checker + Completion
 "Plugin 'scrooloose/syntastic'
@@ -26,6 +31,7 @@ Plugin 'vim-scripts/Pydiction'
 "Utilities"
 Plugin 'L9'
 Plugin 'epeli/slimux'
+Plugin 'jiangmiao/auto-pairs'
 
 "Versioning System"
 Plugin 'tpope/vim-fugitive'
@@ -91,6 +97,12 @@ let g:NERDSpaceDelims = 1
 "
 " " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UliSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " => General
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
