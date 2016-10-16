@@ -18,6 +18,7 @@ Plugin 'scrooloose/nerdtree'
 
 "Python Syntax checker
 Plugin 'nvie/vim-flake8'
+"python autocomplete
 Plugin 'ervandew/supertab'
 Plugin 'davidhalter/jedi-vim'
 
@@ -30,7 +31,8 @@ Plugin 'honza/vim-snippets'
 
 "Utilities"
 Plugin 'L9'
-Plugin 'epeli/slimux'
+"Plugin 'epeli/slimux'
+Plugin 'jpalardy/vim-slime'
 Plugin 'jiangmiao/auto-pairs'
 
 "Versioning System"
@@ -39,6 +41,7 @@ Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -83,8 +86,11 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 "let g:syntastic_check_on_wq = 0
 
 "Slimux
-map <Leader>s  :SlimuxREPLSendLine<CR>
-vmap <Leader>s :SlimuxREPLSendSelection<CR>
+"nmap <Leader>s  :SlimuxREPLSendLine<CR>j
+"vmap <Leader>s :SlimuxREPLSendSelection<CR>
+
+"vim-slime
+let g:slime_target = "tmux"
 
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
@@ -103,6 +109,8 @@ let g:UliSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+"supertab reverse tab complete
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " => General
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,8 +151,9 @@ set wildmenu
 
 set cursorline
 set mouse=a
+map <leader>/ :nohl<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>Copy and Paste
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <C-c> "*y
@@ -167,6 +176,7 @@ noremap <Space> i<Space><RIGHT><ESC>
 noremap <BS> i<BS><RIGHT><ESC>
 map <leader>j $
 map <leader>f 0
+imap <C-L> <Right>
 
 " Split navigation
 nnoremap <C-J> <C-W><C-J>

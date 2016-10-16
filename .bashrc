@@ -120,3 +120,6 @@ fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
 export CUDA_HOME=/usr/local/cuda
 xcape -e 'Control_L=Escape' 
+
+# added by Anaconda3 4.2.0 installer
+export PATH="/home/shawn/anaconda3/bin:$PATH"

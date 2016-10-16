@@ -110,8 +110,10 @@ setopt nonomatch
 xcape -e 'Control_L=Escape' 
 
 #check if in virtualenv before using pip
-export PIP_REQUIRE_VIRTUALENV=true
-gpip() {
-       PIP_REQUIRE_VIRTUALENV="" pip "$@"
-   }
-
+# export PIP_REQUIRE_VIRTUALENV=true
+# gpip() {
+#        PIP_REQUIRE_VIRTUALENV="" pip "$@"
+#    }
+export PIP_REQUIRE_VIRTUALENV=false
+# # added by Anaconda3 4.2.0 installer
+export PATH="/home/shawn/anaconda3/bin:$PATH"
