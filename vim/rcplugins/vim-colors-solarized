@@ -1,0 +1,11 @@
+Plugin 'altercation/vim-colors-solarized'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax enable
+set background=dark
+colorscheme solarized
+
+
+

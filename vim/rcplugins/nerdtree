@@ -1,0 +1,10 @@
+"File Management"
+Plugin 'scrooloose/nerdtree'
+
+
+"nerdtree see github for details
+":help NERDTreeOptions
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+
