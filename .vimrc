@@ -18,12 +18,12 @@ Plugin 'scrooloose/nerdtree'
 
 "Python Syntax checker
 Plugin 'nvie/vim-flake8'
+"python autocomplete
 Plugin 'ervandew/supertab'
 Plugin 'davidhalter/jedi-vim'
-
+Plugin 'fs111/pydoc.vim'
 "Python snippets
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 
 " Universal Syntax Checker + Completion
 "Plugin 'scrooloose/syntastic'
@@ -31,7 +31,8 @@ Plugin 'honza/vim-snippets'
 "Utilities"
 Plugin 'L9'
 Plugin 'epeli/slimux'
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jpalardy/vim-slime'
+"Plugin 'jiangmiao/auto-pairs'
 
 "Versioning System"
 Plugin 'tpope/vim-fugitive'
@@ -39,6 +40,7 @@ Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -83,8 +85,12 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 "let g:syntastic_check_on_wq = 0
 
 "Slimux
-map <Leader>s  :SlimuxREPLSendLine<CR>
+nmap <Leader>s  :SlimuxREPLSendLine<CR>j
 vmap <Leader>s :SlimuxREPLSendSelection<CR>
+map  <C-c><C-c> :SlimuxREPLConfigure<CR>
+
+"vim-slime
+"let g:slime_target = "tmux"
 
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
@@ -98,11 +104,19 @@ let g:NERDSpaceDelims = 1
 " " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UliSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"Command Configuration
+let g:UltiSnipsEdit = "<leader>ee"
+nmap <Leader>ee  :UltiSnipsEdit<CR>
 
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+
+nmap <Leader>*  :UltiSnipsListSnippets<CR>
+let g:UltiSnipsExpandTrigger       = "**"
+let g:UltiSnipsListSnippets        = "<leader>*"
+let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+"supertab reverse tab complete
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " => General
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,14 +157,16 @@ set wildmenu
 
 set cursorline
 set mouse=a
+map <leader>/ :nohl<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>Copy and Paste
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <C-c> "*y
 vnoremap <C-c> "+y
 nnoremap <C-v> "+p
 inoremap <C-v> <C-r>+
+set pastetoggle=<F2>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -167,6 +183,7 @@ noremap <Space> i<Space><RIGHT><ESC>
 noremap <BS> i<BS><RIGHT><ESC>
 map <leader>j $
 map <leader>f 0
+imap <C-L> <Right>
 
 " Split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -194,8 +211,15 @@ set tw=500
 
 set ai "Auto indent
 set si "Smart indetnokai
+set nosmartindent
 
-set nowrap          " no line wrapping;
+"experimenting with line wrap
+set nowrap
+"set linebreak
+"set nolist  " list disables linebreak
+"set breakindent
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search options
