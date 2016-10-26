@@ -34,6 +34,8 @@ bindkey '^N' history-search-forward
 #bind ctrl-space to accept suggestion
 bindkey '^ ' autosuggest-accept
 
+#% alias xclip="xclip -selection c"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -117,3 +119,4 @@ xcape -e 'Control_L=Escape'
 export PIP_REQUIRE_VIRTUALENV=false
 # # added by Anaconda3 4.2.0 installer
 export PATH="/home/shawn/anaconda3/bin:$PATH"
+export PYTHONPATH=~/Software/xgboost/python-package/
